@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "39051012441",
+    "project_id": "guia-de-acessibilidade-c1fc3",
+    "storage_bucket": "guia-de-acessibilidade-c1fc3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39051012441:android:6d9cd9e0eaf7b674e1c448",
+        "android_client_info": {
+          "package_name": "com.guiadeacessibilidade"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDpUX_DBRDcsJMIiw2UNK4FGJpTemUn5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

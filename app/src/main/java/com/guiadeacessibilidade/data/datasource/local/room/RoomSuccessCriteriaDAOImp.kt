@@ -11,6 +11,10 @@ class RoomSuccessCriteriaDAOImp(
         return dao.getAll()
     }
 
+    override suspend fun getSuccessCriteriasBySubCategoryId(subCategoryId: String): List<SuccessCriteriaEntity> {
+        return dao.getSuccessCriteriasBySubCategoryId(subCategoryId)
+    }
+
     override suspend fun loadSuccessCriteriaById(id: String): SuccessCriteriaEntity {
         return dao.loadSuccessCriteriaById(id)
     }

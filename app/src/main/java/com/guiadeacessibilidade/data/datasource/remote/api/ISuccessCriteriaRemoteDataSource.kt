@@ -7,6 +7,7 @@ interface ISuccessCriteriaRemoteDataSource {
 
     fun getAll(): Flow<List<NetworkSuccessCriteria>>
 
+    fun getSuccessCriteriasBySubCategoryId(subCategoryId: String): Flow<List<NetworkSuccessCriteria>>
     suspend fun loadSuccessCriteriaById(id: String): NetworkSuccessCriteria
 
 }

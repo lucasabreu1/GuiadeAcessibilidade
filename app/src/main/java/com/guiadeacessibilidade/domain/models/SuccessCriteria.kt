@@ -9,5 +9,6 @@ data class SuccessCriteria(
     val link: String,
     val description: String,
     val mainTag: String,
-    val searchTags: List<String>
+    val searchTags: List<String>,
+    val subCategoryIdList: List<String>
 )

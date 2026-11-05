@@ -32,7 +32,10 @@ data class SuccessCriteriaEntity(
     val mainTag: String,
 
     @ColumnInfo(name = "search_tags")
-    val searchTags: List<String>
+    val searchTags: List<String>,
+
+    @ColumnInfo(name = "sub_category_id_list")
+    val subCategoryIdList: List<String>
 
 
 )
@@ -48,6 +51,7 @@ fun SuccessCriteriaEntity.ToSuccessCriteria() : SuccessCriteria {
         this.link,
         this.description,
         this.mainTag,
-        this.searchTags
+        this.searchTags,
+        this.subCategoryIdList
     )
 }

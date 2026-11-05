@@ -11,7 +11,8 @@ data class NetworkSuccessCriteria(
     val link: String,
     val description: String,
     val mainTag: String,
-    val searchTags: List<String>
+    val searchTags: List<String>,
+    val subCategoryIdList: List<String>
 )
 
  fun NetworkSuccessCriteria.toSuccessCriteriaEntity() : SuccessCriteriaEntity {
@@ -25,6 +26,7 @@ data class NetworkSuccessCriteria(
         this.link,
         this.description,
         this.mainTag,
-        this.searchTags
+        this.searchTags,
+        this.subCategoryIdList
     )
 }

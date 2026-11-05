@@ -26,6 +26,15 @@ class SuccessCriteriaRepositoryImp (
         }.flowOn(dispatcher)
     }
 
+    override suspend fun getSuccessCriteriasBySubCategoryId(subCategoryId: String): Flow<List<SuccessCriteria>>{
+        return remoteDataSource.getSuccessCriteriasBySubCategoryId(subCategoryId).map {
+            successCriteriaList ->
+                successCriteriaList.map { networkSuccessCriteria ->
+                    networkSuccessCriteria.toSuccessCriteriaEntity().ToSuccessCriteria()
+                }
+        }.flowOn(dispatcher)
+    }
+
     override suspend fun loadSuccessCriteriaById(id: String): SuccessCriteria {
 
         return withContext(dispatcher){

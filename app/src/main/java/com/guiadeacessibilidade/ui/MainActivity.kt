@@ -8,6 +8,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.google.firebase.firestore.FirebaseFirestore
@@ -19,6 +22,8 @@ import com.guiadeacessibilidade.ui.viewmodel.SuccessCriteriaViewModel
 
 
 private const val TAG = "MainActivity"
+
+var someName by mutableStateOf("lar")
 
 class MainActivity : ComponentActivity() {
 

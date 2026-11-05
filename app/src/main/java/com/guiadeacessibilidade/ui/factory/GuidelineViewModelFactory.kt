@@ -9,11 +9,11 @@ class GuidelineViewModelFactory(
     private val getAllGuidelinesUseCase: GetAllSuccessCriteriaUseCase
 ) : ViewModelProvider.Factory {
 
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SuccessCriteriaViewModel::class.java)) {
-            return SuccessCriteriaViewModel(getAllGuidelinesUseCase) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
+//
+//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//        if (modelClass.isAssignableFrom(SuccessCriteriaViewModel::class.java)) {
+//            return SuccessCriteriaViewModel(getAllGuidelinesUseCase) as T
+//        }
+//        throw IllegalArgumentException("Unknown ViewModel class")
+//    }
 }

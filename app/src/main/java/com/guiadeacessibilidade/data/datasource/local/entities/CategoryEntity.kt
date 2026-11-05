@@ -12,11 +12,15 @@ data class CategoryEntity(
 
     @ColumnInfo(name = "name")
     val name: String,
+
+    @ColumnInfo(name = "svg_content")
+    val svgContent: String,
 )
 
 fun CategoryEntity.ToCategory() : Category {
     return Category(
         this.id,
-        this.name
+        this.name,
+        this.svgContent
     )
 }

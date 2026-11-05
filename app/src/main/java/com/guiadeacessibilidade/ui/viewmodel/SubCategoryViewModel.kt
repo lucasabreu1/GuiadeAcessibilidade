@@ -1,19 +1,16 @@
 package com.guiadeacessibilidade.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.guiadeacessibilidade.domain.models.OperationResult
 import com.guiadeacessibilidade.domain.models.SubCategory
-import com.guiadeacessibilidade.domain.usacase.GetAllSubCategoryUseCase
-import com.guiadeacessibilidade.domain.usacase.GetSubCategoryByCategoryIdUseCase
+import com.guiadeacessibilidade.domain.usacase.GetSubCategoriesByCategoryIdUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 sealed interface SubCategoryUiState{
-
     object Loading: SubCategoryUiState
     data class Success(val subCategories: List<SubCategory>) : SubCategoryUiState
     data class Error(val message: String) : SubCategoryUiState
@@ -21,7 +18,7 @@ sealed interface SubCategoryUiState{
 
 
 class SubCategoryViewModel(
-    private val getSubCategoryByCategoryIdUseCase: GetSubCategoryByCategoryIdUseCase,
+    private val getSubCategoriesByCategoryIdUseCase: GetSubCategoriesByCategoryIdUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<SubCategoryUiState>(SubCategoryUiState.Loading)
@@ -33,7 +30,7 @@ class SubCategoryViewModel(
         _uiState.value = SubCategoryUiState.Loading
 
         viewModelScope.launch {
-            getSubCategoryByCategoryIdUseCase(categoryId).collect { subCategories ->
+            getSubCategoriesByCategoryIdUseCase(categoryId).collect { subCategories ->
 
                 when (subCategories) {
                     is OperationResult.Success -> {

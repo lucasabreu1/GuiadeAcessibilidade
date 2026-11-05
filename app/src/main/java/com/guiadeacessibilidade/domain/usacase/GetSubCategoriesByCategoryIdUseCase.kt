@@ -6,11 +6,9 @@ import com.guiadeacessibilidade.domain.repository.ISubCategoryRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.mapLatest
 
-class GetSubCategoryByCategoryIdUseCase (
+class GetSubCategoriesByCategoryIdUseCase (
     private val subCategoryRepository: ISubCategoryRepository,
     private val dispatcher: CoroutineDispatcher
 ) {

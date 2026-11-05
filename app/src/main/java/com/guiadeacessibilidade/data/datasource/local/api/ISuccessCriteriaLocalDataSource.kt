@@ -6,5 +6,6 @@ interface ISuccessCriteriaLocalDataSource {
 
     suspend fun getAll(): List<SuccessCriteriaEntity>
 
+    suspend fun getSuccessCriteriasBySubCategoryId(subCategoryId: String): List<SuccessCriteriaEntity>
     suspend fun loadSuccessCriteriaById(id: String): SuccessCriteriaEntity
 }

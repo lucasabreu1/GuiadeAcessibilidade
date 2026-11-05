@@ -12,5 +12,8 @@ interface SuccessCriteriaDAO {
     fun getAll(): List<SuccessCriteriaEntity>
 
     @Query("SELECT * FROM success_criteria")
+    fun getSuccessCriteriasBySubCategoryId(subCategoryId: String): List<SuccessCriteriaEntity>
+
+    @Query("SELECT * FROM success_criteria")
     fun loadSuccessCriteriaById(id: String): SuccessCriteriaEntity
 }

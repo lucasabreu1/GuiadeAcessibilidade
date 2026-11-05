@@ -40,74 +40,76 @@ import com.guiadeacessibilidade.ui.viewmodel.SuccessCriteriaViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SuccessCriteriaScreen(viewModel: SuccessCriteriaViewModel){
-
-    val filteredSuccessCriteriaList by viewModel.filteredSuccessCriteriaList.collectAsStateWithLifecycle()
-    val searchText by viewModel.searchText.collectAsStateWithLifecycle()
-
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                colors = topAppBarColors(
-                    containerColor = Color.White,
-                    titleContentColor = Color.Black
-                ),
-                title = {
-                    Text(
-                        text = "Guia de Acessibilidade",
-                        style = TextStyle(
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 23.sp
-                        )
-                    )
-                }
-            )
-        },
-        bottomBar = {
-            BottomAppBar{
-
-                    // Left side: Standard structural action icons
-                    IconButton(onClick = { /* Navigate Home */ }) {
-                        Icon(Icons.Filled.Home,
-                            contentDescription = "Localized description",
-                            modifier = Modifier.size(30.dp))
-                    }
-                    IconButton(onClick = { /* Open Edit Mode */ }) {
-                        Icon(Icons.Filled.Edit,
-                            contentDescription = "Localized description",
-                            modifier = Modifier.size(30.dp))
-                    }
-                    IconButton(onClick = { /* Open Settings */ }) {
-                        Icon(Icons.Filled.Settings,
-                            contentDescription = "Localized description",
-                            modifier = Modifier.size(30.dp))
-
-                }
-            }
-        }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding)
-        ) {
-            SearchTextField(
-                value = searchText,
-                onValueChanged = { it ->
-                    viewModel.onQueryChanged(it)
-                }
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            LazyColumn (
-            ){
-                items(filteredSuccessCriteriaList){ item ->
-                    SuccessCriteriaCard(
-                        item.sucessCriteria.name,
-                        item.sucessCriteria.level,
-                        item.principle.name,
-                        item.sucessCriteria.description
-                    )
-                }
-            }
-        }
-    }
+fun SuccessCriteriaScreen(
+    viewModel: SuccessCriteriaViewModel
+){
+//
+//    val filteredSuccessCriteriaList by viewModel.filteredSuccessCriteriaList.collectAsStateWithLifecycle()
+//    val searchText by viewModel.searchText.collectAsStateWithLifecycle()
+//
+//    Scaffold(
+//        topBar = {
+//            TopAppBar(
+//                colors = topAppBarColors(
+//                    containerColor = Color.White,
+//                    titleContentColor = Color.Black
+//                ),
+//                title = {
+//                    Text(
+//                        text = "Guia de Acessibilidade",
+//                        style = TextStyle(
+//                            fontWeight = FontWeight.Bold,
+//                            fontSize = 23.sp
+//                        )
+//                    )
+//                }
+//            )
+//        },
+//        bottomBar = {
+//            BottomAppBar{
+//
+//                    // Left side: Standard structural action icons
+//                    IconButton(onClick = { /* Navigate Home */ }) {
+//                        Icon(Icons.Filled.Home,
+//                            contentDescription = "Localized description",
+//                            modifier = Modifier.size(30.dp))
+//                    }
+//                    IconButton(onClick = { /* Open Edit Mode */ }) {
+//                        Icon(Icons.Filled.Edit,
+//                            contentDescription = "Localized description",
+//                            modifier = Modifier.size(30.dp))
+//                    }
+//                    IconButton(onClick = { /* Open Settings */ }) {
+//                        Icon(Icons.Filled.Settings,
+//                            contentDescription = "Localized description",
+//                            modifier = Modifier.size(30.dp))
+//
+//                }
+//            }
+//        }
+//    ) { innerPadding ->
+////        Column(
+////            modifier = Modifier
+////                .padding(innerPadding)
+////        ) {
+////            SearchTextField(
+////                value = searchText,
+////                onValueChanged = { it ->
+////                    viewModel.onQueryChanged(it)
+////                }
+////            )
+////            Spacer(modifier = Modifier.height(20.dp))
+////            LazyColumn (
+////            ){
+////                items(filteredSuccessCriteriaList){ item ->
+////                    SuccessCriteriaCard(
+////                        item.sucessCriteria.name,
+////                        item.sucessCriteria.level,
+////                        item.principle.name,
+////                        item.sucessCriteria.description
+////                    )
+////                }
+////            }
+////        }
+//    }
 }

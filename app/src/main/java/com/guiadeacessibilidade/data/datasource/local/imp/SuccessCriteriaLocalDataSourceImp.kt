@@ -14,7 +14,12 @@ class SuccessCriteriaLocalDataSourceImp(
         return successCriteriaDAO.getAll()
     }
 
-     override suspend fun loadSuccessCriteriaById(id: String): SuccessCriteriaEntity {
+    override suspend fun getSuccessCriteriasBySubCategoryId(subCategoryId: String): List<SuccessCriteriaEntity> {
+
+        return successCriteriaDAO.getSuccessCriteriasBySubCategoryId(subCategoryId)
+    }
+
+    override suspend fun loadSuccessCriteriaById(id: String): SuccessCriteriaEntity {
 
         return successCriteriaDAO.loadSuccessCriteriaById(id)
     }

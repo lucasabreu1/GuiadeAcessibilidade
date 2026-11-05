@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 
 class SuccessCriteriaRemoteDataSourceImp(
-    private val sucessCriteriaApi: ISuccessCriteriaApi,
+    private val successCriteriaApi: ISuccessCriteriaApi,
     private val dispatcher: CoroutineDispatcher,
     private val refreshIntervalMs: Long = 3600000
 ) : ISuccessCriteriaRemoteDataSource {
@@ -20,17 +20,25 @@ class SuccessCriteriaRemoteDataSourceImp(
 
         return flow {
             while (true){
-                val successCriteriaList = sucessCriteriaApi.getAll()
+                val successCriteriaList = successCriteriaApi.getAll()
                 emit(successCriteriaList)
                 delay(refreshIntervalMs)
             }
         }.flowOn(dispatcher)
     }
 
+    override fun getSuccessCriteriasBySubCategoryId(subCategoryId: String) : Flow<List<NetworkSuccessCriteria>>{
+
+        return flow {
+            val successCriteriaList = successCriteriaApi.getSuccessCriteriasBySubCategoryId(subCategoryId)
+            emit(successCriteriaList)
+        }.flowOn(dispatcher)
+    }
+
     override suspend fun loadSuccessCriteriaById(id: String): NetworkSuccessCriteria {
 
         return withContext(dispatcher){
-            sucessCriteriaApi.loadSuccessCriteriaById(id)
+            successCriteriaApi.loadSuccessCriteriaById(id)
         }
 
     }

@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.guiadeacessibilidade.data.datasource.remote.api.ISuccessCriteriaApi
+import com.guiadeacessibilidade.data.datasource.remote.models.NetworkSubCategory
 import com.guiadeacessibilidade.data.datasource.remote.models.NetworkSuccessCriteria
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Job
@@ -33,7 +34,8 @@ class FirebaseSuccessCriteriaApiImp(
                 val networkList = result.documents.mapNotNull { document ->
                 try
                 {
-                    val searchTags = document.toNetworkSuccessCriteria()
+                    val searchTags = document.getSearchTags()
+                    val subCategoryIdList = document.getSubCategoryIdList()
 
                     val obj = NetworkSuccessCriteria(
                         document.id,
@@ -44,7 +46,8 @@ class FirebaseSuccessCriteriaApiImp(
                         document.getString("link") ?: "",
                         document.getString("description") ?: "",
                         document.getString("mainTag") ?: "",
-                        searchTags
+                        searchTags,
+                        subCategoryIdList
                     )
 
                     obj
@@ -59,12 +62,57 @@ class FirebaseSuccessCriteriaApiImp(
         return list
     }
 
-    fun DocumentSnapshot.toNetworkSuccessCriteria(): List<String> {
+    override suspend fun getSuccessCriteriasBySubCategoryId(subCategoryId: String): List<NetworkSuccessCriteria> {
+
+        val result = dbFirestore.collection("success_criteria")
+            .get()
+            .addOnSuccessListener {  }
+            .addOnFailureListener {  }
+            .await()
+
+        val list = withContext(dispatcher){
+
+            val successCriteriasList = result?.documents
+                ?.filterNotNull()
+                ?.filter { document ->
+                    val _subCategoryIdList = document.getSubCategoryIdList()
+                    _subCategoryIdList.contains(subCategoryId)
+                }
+                ?.map { document ->
+
+                    NetworkSuccessCriteria(
+                        document.id,
+                        document.getString("guideline_id") ?: "",
+                        document.getString("principle_id") ?: "",
+                        document.getString("name") ?: "",
+                        document.getString("level") ?: "",
+                        document.getString("link") ?: "",
+                        document.getString("description") ?: "",
+                        document.getString("main_tag") ?: "",
+                        document.getSearchTags(),
+                        document.getSubCategoryIdList()
+                    )
+                }
+            successCriteriasList
+        }
+
+        return list ?: emptyList()
+    }
+
+    fun DocumentSnapshot.getSearchTags(): List<String> {
 
         val rawTagsList = this.get("search_tags") as? List<*>
         val searchTags: List<String> = rawTagsList?.mapNotNull { it as? String } ?: emptyList()
 
         return searchTags
+    }
+
+    fun DocumentSnapshot.getSubCategoryIdList(): List<String> {
+
+        val rawSubCategoryIdList = this.get("sub_category_id_list") as? List<*>
+        val result: List<String> = rawSubCategoryIdList?.mapNotNull { it as? String } ?: emptyList()
+
+        return result
     }
 
     override suspend fun loadSuccessCriteriaById(id: String): NetworkSuccessCriteria {

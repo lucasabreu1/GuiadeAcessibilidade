@@ -33,7 +33,8 @@ class FirebaseCategoryApiImp(
                 {
                     NetworkCategory(
                         document.id,
-                        document.getString("name") ?: ""
+                        document.getString("name") ?: "",
+                        svgContent = document.getString("svg_content") ?: ""
                     )
 
 
@@ -64,7 +65,8 @@ class FirebaseCategoryApiImp(
 
         return NetworkCategory(
             categoryDocument?.id ?: "",
-            categoryDocument?.getString("name") ?: ""
+            categoryDocument?.getString("name") ?: "",
+            svgContent = categoryDocument?.getString("name") ?: ""
         )
 
     }
